@@ -33,17 +33,18 @@ public class WindowHandleDemo {
         WebElement loginButton = wait.until(ExpectedConditions.presenceOfElementLocated(loginButtonXpath));
         loginButton.click();
 
-        // текущий WindowHandle
+        // текущий WindowHandle (Это ручка от главной страницы!)
         String homeWH = driver.getWindowHandle();
 
         // Получаем сэт вкладок:
         Set<String> handles = driver.getWindowHandles();
 
         // Принтим в консоль все имена открытых вкладок и создаем ссылку на новую вкладку:
-        String loginWH = "";
+        String loginWH = null;
         for (String handle : handles) {
+            // принтим все оконные ручки =)
             System.out.println(handle);
-            if (!handle.equals(homeWH)) {
+            if (!homeWH.contentEquals(handle)) {
                 loginWH = handle;
             }
         }
