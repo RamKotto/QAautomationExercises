@@ -1,10 +1,13 @@
 package locators;
 
-import browser_factory.BrowserFactory;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 public class Locators {
@@ -21,9 +24,9 @@ public class Locators {
     }
 
     public void locatorsTest() {
-        driver = BrowserFactory.createBrowser("chrome");
-        BrowserFactory.setWait(driver, 10);
-        wait = BrowserFactory.getWait();
+        WebDriverManager.getInstance(ChromeDriver.class).setup();
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.manage().window().maximize();
         driver.get(HOST + path);
